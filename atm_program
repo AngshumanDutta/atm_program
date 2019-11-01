@@ -1,0 +1,120 @@
+
+#include<iostream>
+
+using namespace std;
+
+
+int main()
+{
+    int amount, n2000, n500, n200, n100, x1, x2, y1;
+    
+    cout<<"Number of 2000 Rupee notes in ATM: "<<endl;
+    cin>>n2000;
+    cout<<"Number of 500 Rupee notes in ATM: "<<endl;
+    cin>>n500;
+    cout<<"Number of 200 Rupee notes in ATM: "<<endl;
+    cin>>n200;
+    cout<<"Number of 100 Rupee notes in ATM: "<<endl;
+    cin>>n100;
+
+    cout<<"Enter amount"<<endl;
+    cin>>amount;
+
+    x1 = (amount - n2000*2000)%500, x2 = (x1 - n200*200)%100, y1=amount-n2000*2000-n500*500;
+
+    // FOR AMOUNT GREATER THAN 2000 RUPEES
+
+    if(amount%100!=0)
+    	cout<<"Enter different amount";
+
+    else if(amount>=2000 && amount%2000==0 && amount/2000<=n2000)
+    	cout<<"Number of 2000 Rupee notes: "<<amount/2000<<endl;
+
+    else if(amount>2000 && amount/2000>=n2000)
+    {
+
+    	if((amount-n2000*2000)/500<=n500)
+    	{
+    		if((amount-n2000*2000)%500==0)
+    			cout<<"Number of 2000 Rupee notes: "<<n2000<<endl<<"Number of 500 Rupee notes: "<<(amount-n2000*2000)/500<<endl;
+    		else if((amount-n2000*2000)%500!=0)
+    		{
+    			if(x1%200==0 && x1/200<=n200)
+    				cout<<"Number of 2000 Rupee notes: "<<n2000<<endl<<"Number of 500 Rupee notes: "<<(amount-n2000*2000)/500<<endl<<"Number of 200 Rupee notes: "<<x1/200<<endl;
+    			else if(x1%200!=0 && x1/200<=n200 && (x1%200)%100==0 && (x1%200)/100<=n100 )
+    				cout<<"Number of 2000 Rupee notes: "<<n2000<<endl<<"Number of 500 Rupee notes: "<<(amount-n2000*2000)/500<<endl<<"Number of 200 Rupee notes: "<<x1/200<<endl<<"Number of 100 Rupee notes: "<<(x1%200)/100<<endl;
+    			else if(x1/200>=n200 && (x1-n200*200)%100==0 && (x1-n200*200)/100<=n100)
+    				cout<<"Number of 2000 Rupee notes: "<<n2000<<endl<<"Number of 500 Rupee notes: "<<(amount-n2000*2000)/500<<endl<<"Number of 200 Rupee notes: "<<n200<<endl<<"Number of 100 Rupee notes: "<<x2/100<<endl;
+    		}
+    	}
+
+    	else if((amount-n2000*2000)/500>=n500)
+    	{
+    		if(y1/200<=n200)
+    			{
+    				if(y1%200==0)
+    					cout<<"Number of 2000 Rupee notes: "<<n2000<<endl<<"Number of 500 Rupee notes: "<<n500<<endl<<"Number of 200 Rupee notes: "<<y1/200<<endl;
+    				else if(y1%200!=0 && (y1%200)/100<=100)
+    					cout<<"Number of 2000 Rupee notes: "<<n2000<<endl<<"Number of 500 Rupee notes: "<<n500<<endl<<"Number of 200 Rupee notes: "<<y1/200<<endl<<"Number of 100 Rupee notes: "<<(y1%200)/100<<endl;
+    			}
+    		else if(y1/200>=n200 && (y1-n200*200)/100<=n100)
+    			cout<<"Number of 2000 Rupee notes: "<<n2000<<endl<<"Number of 500 Rupee notes: "<<n500<<endl<<"Number of 200 Rupee notes: "<<n200<<endl<<"Number of 100 Rupee notes: "<<(y1-n200*200)/100<<endl;
+    		
+    		   
+    		
+    	}
+    		
+    		
+
+    }
+
+    //FOR AMOUNT LESS THAN 2000 RUPEES
+
+    else if(500<=amount<2000 && amount/500<=n500 && amount%500==0)
+    	cout<<"Number of 500 Rupee notes: "<<amount/500<<endl;
+
+    else if(500<=amount<2000 && amount%500!=0 && amount/500<=n500)
+    {
+    	if((amount%500)%200==0 && (amount%500)/200<=n200)
+    		cout<<"Number of 500 Rupee notes: "<<amount/500<<endl<<"Number of 200 Rupee notes: "<<(amount%500)/200;
+    	else if((amount%500)%200!=0)
+    	{
+    		if((amount%500)/200<=n200 && (amount%500)%200/100<=n100)
+    			cout<<"Number of 500 Rupee notes: "<<amount/500<<endl<<"Number of 200 Rupee notes: "<<(amount%500)/200<<endl<<"Number of 100 Rupee notes: "<<(amount%500)%200/100<<endl;
+    		else if((amount%500)/200>=n200 && ((amount%500)-n200*200)/100<=n100)
+    			cout<<"Number of 500 Rupee notes: "<<amount/500<<endl<<"Number of 200 Rupee notes: "<<n200<<endl<<"Number of 100 Rupee notes: "<<((amount%500)-n200*200)/100<<endl;
+    	}
+    }
+
+    else if(500<amount<2000 && amount/500>=n500)
+    {
+    	if((amount-n500*500)%200==0 && (amount-n500*500)/200<=n200)
+    		cout<<"Number of 500 Rupee notes: "<<n500<<endl<<"Number of 200 Rupee notes: "<<(amount-n500*500)/200<<endl;
+    	else if((amount-n500*500)%200!=0 && (amount-n500*500)/200<=n200 && ((amount-n500*500)%200)<=n100 && ((amount-n500*500)%200)/100==0 )
+    		cout<<"Number of 500 Rupee notes: "<<n500<<endl<<"Number of 200 Rupee notes: "<<(amount-n500*500)/200<<endl<<"Number of 100 Rupee notes: "<<((amount-n500*500)%200)/100<<endl;
+    	else if((amount-n500*500)/200>=n200 && (amount-n500*500-n200*200)/100<=n100 && (amount-n500*500-n200*200)%100==0)
+    		cout<<"Number of 500 Rupee notes: "<<n500<<endl<<"Number of 200 Rupee notes: "<<n200<<endl<<"Number of 100 Rupee notes: "<<(amount-n500*500-n200*200)/100<<endl;
+    }
+
+    else if(amount==500 && n500>=1)
+    	cout<<"Number of 500 Rupee notes: 1"<<endl;
+
+    // FOR AMOUNT LESS THAN 500
+
+    else if(amount<500)
+    {
+    	if(amount/200<=n200 && amount%200==0)
+    		cout<<"Number of 200 Rupee notes: "<<amount/200<<endl;
+    	else if(amount/200>=n200 && (amount-n200*200)/100<=n100 && (amount-n200*200)%100==0)
+    		cout<<"Number of 200 Rupee notes: "<<n200<<endl<<"Number of 100 Rupee notes: "<<(amount-n200*200)/100<<endl;
+    }
+
+    else if(amount==100 && n100>=1)
+    	cout<<"Number of 100 Rupee notes: 1"<<endl;
+
+    else
+    	cout<<"Enter different amount"<<endl;
+
+		
+	return 0;
+}
